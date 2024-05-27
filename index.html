@@ -9,32 +9,33 @@
  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
  <link rel="stylesheet" href="style.css">
-
-   <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var allowedUserAgent = "trnghck2lac";
-            var currentUserAgent = navigator.userAgent;
-
-            if (currentUserAgent !== allowedUserAgent) {
-                window.location.href = "access_denied.html";
-            }
-        });
-
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-        });
-
-        document.onkeydown = function(e) {
-            if (e.key == "F12" || (e.ctrlKey && (e.key == "u" || e.key == "U" || e.key == "s" || e.key == "S"))) {
-                return false;
-            }
-        };
-    </script>
+ 
+ <script>
+   document.addEventListener("DOMContentLoaded", function() {
+     var allowedUserAgent = "trnghck2lac";
+     var currentUserAgent = navigator.userAgent;
+ 
+     if (currentUserAgent !== allowedUserAgent) {
+       window.location.href = "access_denied.html";
+     }
+   });
+ 
+   document.addEventListener('contextmenu', function(event) {
+     event.preventDefault();
+   });
+ 
+   document.onkeydown = function(e) {
+     if (e.key == "F12" || (e.ctrlKey && (e.key == "u" || e.key == "U" || e.key == "s" || e.key == "S"))) {
+       return false;
+     }
+   };
+ </script>
  
 </head>
 <body>
 <div class="container">
  <div id="login-form">
+<p id="w">Wait if you already logged in.. </p>
   <input type="text" id="access-key" placeholder="Enter Access Key">
   <button onclick="login()">Login</button>
   <div class="key">
@@ -78,65 +79,66 @@
   </div>
   <div id="countdown"></div>
   <div id="notifications"></div>
-    <button id="spt">Help Support</button>
+    <button id="spt" onclick="window.location.href='https://t.me/OracleAisupport';">Help Support</button>
+    
+     <div class="promotion-box">
+       <div class="promo-ad active">
+         <div class="promo-image">
+           <img src="trn.webp" alt="Promotion Image 1">
+         </div>
+         <div class="promo-content">
+           <h2>Register Account<br> & Get Free Credits</h2>
+           <p>Deposit Minimum ₹200</p>
+           <button id="promo-button" onclick="window.location.href='https://tirangaclub.top/#/register?invitationCode=667464211192';">Create Account</button>
+         </div>
+         <div class="ad-label">Free Credits</div>
+       </div>
+       <div class="promo-ad">
+         <div class="promo-image">
+           <img src="promo3.webp" alt="Promotion Image 2">
+         </div>
+         <div class="promo-content">
+           <h2>Play Aviator & Earn<br>₹2000 On ₹10 Bet</h2>
+           <p>Deposit Minimum ₹200</p>
+           <button id="promo-button" onclick="window.location.href='https://1wgrdr.life/#7xfx';">Use Code VIP100</button>
+         </div>
+         <div class="ad-label">Recommended</div>
+       </div>
+    
+       <div class="promo-ad">
+         <div class="promo-image">
+           <img src="promo4.webp" alt="Promotion Image 2">
+         </div>
+         <div class="promo-content">
+           <h2>Play Mines & Earn<br>₹50,000 On ₹10 Bet</h2>
+           <p>Deposit Minimum ₹200</p>
+           <button id="promo-button" onclick="window.location.href='https://1wgrdr.life/#7xfx';">Use Code VIP100</button>
+         </div>
+         <div class="ad-label">Recommended</div>
+       </div>
+    
+       <div class="promo-ad">
+         <div class="promo-image">
+           <img src="promo2.webp" alt="Promotion Image 2">
+         </div>
+         <div class="promo-content">
+           <h2>Play RocketX & Earn<br> ₹10,000 On ₹10 Bet</h2>
+           <p>Deposit Minimum ₹200</p>
+           <button id="promo-button" onclick="window.location.href='https://1wgrdr.life/#7xfx';">Use Code VIP100</button>
+         </div>
+         <div class="ad-label">Recommended</div>
+       </div>
+    
+    
+     </div>
+    
  </div>
 </div>
 <div id="credit">
     <p class="developer-info">Hack By <a href="https://t.me/officialcolourhack">VIP Official</a></p>
             
         </div>
-        
-
-        <div class="promotion-box">
-        <div class="promo-ad active">
-            <div class="promo-image">
-                <img src="trn.webp" alt="Promotion Image 1">
-            </div>
-            <div class="promo-content">
-                <h2>Register Account<br> & Get Free Credits</h2>
-                <p>Deposit Minimum ₹200</p>
-  <button id="promo-button" onclick="window.location.href='https://tirangaclub.top/#/register?invitationCode=667464211192';">Create Account</button>
-            </div>
-            <div class="ad-label">Free Credits</div>
-        </div>
-        <div class="promo-ad">
-            <div class="promo-image">
-                <img src="promo3.webp" alt="Promotion Image 2">
-            </div>
-            <div class="promo-content">
-                <h2>Play Aviator & Earn<br>₹2000 On ₹10 Bet</h2>
-                <p>Deposit Minimum ₹200</p>
-                <button id="promo-button" onclick="window.location.href='#';">Use Code VIP100</button>
-            </div>
-            <div class="ad-label">Recommended</div>
-        </div>
-
-             <div class="promo-ad">
-            <div class="promo-image">
-                <img src="promo4.webp" alt="Promotion Image 2">
-            </div>
-            <div class="promo-content">
-                <h2>Play Mines & Earn<br>₹50,000 On ₹10 Bet</h2>
-                <p>Deposit Minimum ₹200</p>
-                <button id="promo-button" onclick="window.location.href='#';">Use Code VIP100</button>
-            </div>
-            <div class="ad-label">Recommended</div>
-        </div> 
-        
-                      <div class="promo-ad">
-            <div class="promo-image">
-                <img src="promo2.webp" alt="Promotion Image 2">
-            </div>
-            <div class="promo-content">
-                <h2>Play RocketX & Earn<br> ₹10,000 On ₹10 Bet</h2>
-                <p>Deposit Minimum ₹200</p>
-                <button id="promo-button" onclick="window.location.href='#';">Use Code VIP100</button>
-            </div>
-            <div class="ad-label">Recommended</div>
-        </div> 
-         
-        
-    </div>    
+      
         
 <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
@@ -147,4 +149,4 @@
 <script src="main.js"></script>
 
 </body>
-</html>
+   </html>
