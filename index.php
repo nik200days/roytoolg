@@ -1,4 +1,3 @@
-
 <?php
 $allowedUserAgent = "trnghck2lac";
 $currentUserAgent = $_SERVER['HTTP_USER_AGENT'];
