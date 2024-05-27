@@ -10,7 +10,17 @@
  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
  <link rel="stylesheet" href="style.css">
- 
+
+  <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var allowedUserAgent = "trnghck2lac";
+            var currentUserAgent = navigator.userAgent;
+
+            if (currentUserAgent !== allowedUserAgent) {
+                window.location.href = "access_denied.html";
+            }
+        });
+  </script>
  
 </head>
 <body>
