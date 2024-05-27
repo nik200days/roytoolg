@@ -11,16 +11,26 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
  <link rel="stylesheet" href="style.css">
 
-  <script>
+   <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var allowedUserAgent = "trnghck2lac";
+            var allowedUserAgent = "YourCustomUserAgentString";
             var currentUserAgent = navigator.userAgent;
 
             if (currentUserAgent !== allowedUserAgent) {
                 window.location.href = "access_denied.html";
             }
         });
-  </script>
+
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        document.onkeydown = function(e) {
+            if (e.key == "F12" || (e.ctrlKey && (e.key == "u" || e.key == "U" || e.key == "s" || e.key == "S"))) {
+                return false;
+            }
+        };
+    </script>
  
 </head>
 <body>
