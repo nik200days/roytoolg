@@ -252,7 +252,7 @@ function generateWinningNotification() {
     }
 
     notification.innerHTML = `
-    <img id="mny" src="mny.gif" alt=""></img>
+    <img id="mny" src="mny (1).gif" alt=""></img>
     <p>${content}</p>
   `;
 
