@@ -434,15 +434,17 @@ padding-top: 5px;
         }
 
         .promo-content h2 {
-            padding-left: 12px;
+           padding-left: 11px;
             margin-top: 0;
             font-size: 19px;
+            text-align: left;
         }
 
         .promo-content p {
             margin-top: -11px;
             padding-left: 12px;
             font-size: 11px;
+            text-align: left;
         }
 
         #promo-button {
@@ -451,11 +453,13 @@ padding-top: 5px;
             color: white;
             border: none;
             font-size: 10px;
+            font-weight: 800;
             border-radius: 55px;
             cursor: pointer;
-            margin-left: 12px;
+            margin-left: -220px;
             margin-top: -20px;
             width: 110px;
+            text-align: left;
         }
 
         #promo-button:hover {
@@ -495,3 +499,9 @@ padding-top: 5px;
         .key{
           margin-top: 14px;
         }
+        
+       #w{
+          font-size: 14px;
+          color: #fff;
+          
+                    }
