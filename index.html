@@ -1,12 +1,4 @@
-<?php
-$allowedUserAgent = "trnghck2lac";
-$currentUserAgent = $_SERVER['HTTP_USER_AGENT'];
 
-if ($currentUserAgent !== $allowedUserAgent) {
-    header("Location: access_denied.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
