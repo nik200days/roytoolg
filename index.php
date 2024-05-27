@@ -1,4 +1,3 @@
-
 <?php
 $allowedUserAgent = "trnghck2lac";
 $currentUserAgent = $_SERVER['HTTP_USER_AGENT'];
@@ -32,11 +31,11 @@ if ($currentUserAgent !== $allowedUserAgent) {
   </div>
 
  </div>
-  <img id="logo" src="logo.webp" alt="" />
+  <img id="assets/logo" src="logo.webp" alt="" />
  <div id="generate-form">
-       <img id="cred" src="cred.webp" alt="" />
-    <img id="cnt1" src="cnt1.webp" alt="" />
-    <img id="cnt" src="cnt.webp" alt="" />
+       <img id="cred" src="assets/cred.webp" alt="" />
+    <img id="cnt1" src="assets/cnt1.webp" alt="" />
+    <img id="cnt" src="assets/cnt.webp" alt="" />
 
   <p id="credits">Credits: 0</p>
   <p id="plan-details"></p>
@@ -80,7 +79,7 @@ if ($currentUserAgent !== $allowedUserAgent) {
         <div class="promotion-box">
         <div class="promo-ad active">
             <div class="promo-image">
-                <img src="trn.webp" alt="Promotion Image 1">
+                <img src="assets/trn.webp" alt="Promotion Image 1">
             </div>
             <div class="promo-content">
                 <h2>Register Account<br> & Get Free Credits</h2>
@@ -91,7 +90,7 @@ if ($currentUserAgent !== $allowedUserAgent) {
         </div>
         <div class="promo-ad">
             <div class="promo-image">
-                <img src="promo3.webp" alt="Promotion Image 2">
+                <img src="assets/promo3.webp" alt="Promotion Image 2">
             </div>
             <div class="promo-content">
                 <h2>Play Aviator & Earn<br>₹2000 On ₹10 Bet</h2>
@@ -103,7 +102,7 @@ if ($currentUserAgent !== $allowedUserAgent) {
 
              <div class="promo-ad">
             <div class="promo-image">
-                <img src="promo4.webp" alt="Promotion Image 2">
+                <img src="assets/promo4.webp" alt="Promotion Image 2">
             </div>
             <div class="promo-content">
                 <h2>Play Mines & Earn<br>₹50,000 On ₹10 Bet</h2>
@@ -115,7 +114,7 @@ if ($currentUserAgent !== $allowedUserAgent) {
         
                       <div class="promo-ad">
             <div class="promo-image">
-                <img src="promo2.webp" alt="Promotion Image 2">
+                <img src="assets/promo2.webp" alt="Promotion Image 2">
             </div>
             <div class="promo-content">
                 <h2>Play RocketX & Earn<br> ₹10,000 On ₹10 Bet</h2>
