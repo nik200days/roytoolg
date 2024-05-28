@@ -200,9 +200,9 @@ body {
     font-size: 18px;
     font-weight: 600;
     color: #fff;
-    text-align: center;
+    text-align: left;
     padding: 11px ;
-    margin-left: -50px;
+    margin-left: 55px;
     margin-top: 146px;
         }
 
@@ -210,11 +210,12 @@ body {
             position: absolute;
             top: 0;
             left: 0;
-            margin-left: -83px;
+            margin-left: 67px;
             margin-top: 175px;
-    height: 11px;
-padding-top: 5px;
+            height: 11px;
+            padding-top: 5px;
             width: 100%;
+            text-align: left;
             font-size: 11px;
             font-weight: bold; 
             color: #fff;
@@ -284,7 +285,7 @@ padding-top: 5px;
     text-align: center;
     padding: 11px ;
     margin-left: 9px;
-    margin-top: 250px;
+    margin-top: 210px;
         }
         
         #cnt{
