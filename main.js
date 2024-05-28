@@ -21,6 +21,7 @@ const planDetailsDisplay = document.getElementById('plan-details');
 
 let lastResultTime = null;
 let currentKeyDoc = null;
+
 // Function to show success notification
 function showSuccessNotification(message) {
     Swal.fire({
@@ -43,11 +44,15 @@ function showErrorNotification(message) {
     });
 }
 
-
-
 function login() {
   const accessKey = document.getElementById('access-key').value.trim();
+  const uid = document.getElementById('uid').value.trim();
   const deviceUUID = localStorage.getItem('deviceUUID') || uuid.v4();
+
+  if (!/^\d+$/.test(uid)) {
+    showErrorNotification('UID must be a number.');
+    return;
+  }
 
   db.collection('access_keys').doc(accessKey).get().then(doc => {
     if (doc.exists) {
@@ -75,10 +80,12 @@ function login() {
 
       currentKeyDoc = doc;
       creditsDisplay.innerText = `Credits: ${data.credits}`;
-      planDetailsDisplay.innerText = `Plan: ${data.plan} expires on ${new Date(data.expiry).toLocaleDateString()}`;
+      planDetailsDisplay.innerText = `Exp on ${new Date(data.expiry).toLocaleDateString()}`;
       localStorage.setItem('accessKey', accessKey);
+      localStorage.setItem('uid', uid);
       loginForm.style.display = 'none';
       generateForm.style.display = 'block';
+      showSuccessNotification('Connected successfully');
     } else {
       showErrorNotification('Invalid access key.');
     }
@@ -91,6 +98,7 @@ function logout() {
   loginForm.style.display = 'block';
   generateForm.style.display = 'none';
   localStorage.removeItem('accessKey');
+  localStorage.removeItem('uid');
   currentKeyDoc = null;
 }
 
@@ -137,9 +145,10 @@ window.onload = checkLoginStatus;
 
 getResultButton.addEventListener('click', () => {
   const currentTime = new Date();
+  const currentKeyData = currentKeyDoc.data();
 
-// Check if there are enough credits
-  if (currentKeyDoc.data().credits <= 0) {
+  // Check if there are enough credits
+  if (currentKeyData.credits <= 0) {
     showErrorNotification("Your credits for today have ended.");
     return;
   }
@@ -167,16 +176,22 @@ getResultButton.addEventListener('click', () => {
     lastResultTime = new Date();
 
     // Decrement credits and update Firebase
-    const newCredits = currentKeyDoc.data().credits - 1;
+    const newCredits = currentKeyData.credits - 1;
 
     if (newCredits >= 0) {
-        db.collection('access_keys').doc(currentKeyDoc.id).update({
-            credits: newCredits
-        }).then(() => {
-            creditsDisplay.innerText = `Credits: ${newCredits}`;
+      db.collection('access_keys').doc(currentKeyDoc.id).update({
+        credits: newCredits
+      }).then(() => {
+        // Fetch the updated document to reflect the new state
+        db.collection('access_keys').doc(currentKeyDoc.id).get().then(doc => {
+          currentKeyDoc = doc;
+          creditsDisplay.innerText = `Credits: ${newCredits}`;
         });
+      }).catch(error => {
+        console.error("Error updating credits:", error);
+      });
     } else {
-        showErrorNotification("Your credits for today have ended.");
+      showErrorNotification("Your credits for today have ended.");
     }
   }, 731);
 });
@@ -273,7 +288,7 @@ function generateWinningNotification() {
   
   let currentAdIndex = 0;
         const ads = document.querySelectorAll('.promo-ad');
-        const adInterval = 3800;
+        const adInterval = 4700;
 
         function showNextAd() {
             ads[currentAdIndex].classList.remove('active');
