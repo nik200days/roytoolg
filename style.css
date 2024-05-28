@@ -8,10 +8,11 @@ body {
             justify-content: center;
             align-items: center;
             height: 80vh;
+            
         }
 
         .container {
-            width: 375px;
+            max-width: 375px;
             height: auto;
             padding: 11px;
             background-color: #21275B;
@@ -505,4 +506,4 @@ body {
           font-size: 14px;
           color: #fff;
           
-                    }
+}
