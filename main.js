@@ -279,7 +279,6 @@ const ads = [
   { id: 'promo11' },
   { id: 'promo21' },
   { id: 'promo31' },
-  { id: 'promo41' }
 ];
 
 let currentAdIndex = 0;
