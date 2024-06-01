@@ -255,7 +255,7 @@ function generateWinningNotification() {
 
 function displayNotification(content) {
     const notifications = document.getElementById('notifications');
-    let notification = document.getElementById('single-notification');
+    let notification = document.getElementById('single-notification1');
 
     if (!notification) {
         notification = document.createElement('div');
@@ -273,14 +273,14 @@ function displayNotification(content) {
     notifications.style.display = 'block';
 }
 
-function updateNotifications() {
+function updateNotifications1() {
     // Generate and display a new notification every 2 seconds
     setInterval(() => {
         displayNotification(generateWinningNotification());
     }, 2000);
 }
 
-document.addEventListener('DOMContentLoaded', updateNotifications);
+document.addEventListener('DOMContentLoaded', updateNotifications1);
 
 const ads = [
   { id: 'promo11' },
