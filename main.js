@@ -9,7 +9,6 @@ const firebaseConfig = {
   appId: "1:827150673565:web:f9f818a4d1dad91b585674",
   measurementId: "G-ZFZ0BH0PE4"
 };
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -34,7 +33,6 @@ function showSuccessNotification(message) {
     });
 }
 
-
 // Function to show error notification
 function showErrorNotification(message) {
     Swal.fire({
@@ -48,7 +46,13 @@ function showErrorNotification(message) {
 
 function login() {
   const accessKey = document.getElementById('access-key').value.trim();
-  const uid = document.getElementById('uid').value.trim(); // Added line to retrieve UID
+  const uid = document.getElementById('uid').value.trim(); // Ensure UID is captured
+
+  if (!uid || isNaN(uid) || uid.length < 5 || uid.length > 10) {
+    showErrorNotification('Enter Tiranga UID to proceed ');
+    return;
+  }
+
   const deviceUUID = localStorage.getItem('deviceUUID') || uuid.v4();
 
   db.collection('access_keys').doc(accessKey).get().then(doc => {
@@ -70,7 +74,7 @@ function login() {
       if (!data.deviceUUID) {
         db.collection('access_keys').doc(accessKey).update({
           deviceUUID: deviceUUID,
-          uid: uid // Store UID in Firestore
+          uid: parseInt(uid) // Ensure UID is stored as a number
         }).then(() => {
           localStorage.setItem('deviceUUID', deviceUUID);
         });
@@ -214,7 +218,7 @@ function formatPeriod(date) {
   return `${dateString}0${minutesOfDay}`;
 }
 
-// Countdown timer
+// Countdown timer continuation
 const countdownElement = document.getElementById('countdown');
 
 function updateCountdown() {
@@ -238,49 +242,46 @@ updateCountdown();
 const countdownInterval = setInterval(updateCountdown, 1000);
 
 function generateWinningNotification() {
-    const startingDigits = ['7', '8', '9'];
-    const firstDigit = startingDigits[Math.floor(Math.random() * startingDigits.length)];
-    const secondDigit = Math.floor(Math.random() * 10);
-    const phoneNumber = `+91 ${firstDigit}${secondDigit}XXXXXX${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`;
-    const winnings = [1764, 2205, 2646, 3087, 3920, 4900, 6172, 7938, 9800];
-    
-    
-    
-    
-    // Winning amounts in multiples of 2 and 8
-    const winningAmount = winnings[Math.floor(Math.random() * winnings.length)];
-    const formattedAmount = winningAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return `User <span class="user">${phoneNumber} won <span class="winning-amount">₹${formattedAmount}</span>`;
+  const startingDigits = ['7', '8', '9'];
+  const firstDigit = startingDigits[Math.floor(Math.random() * startingDigits.length)];
+  const secondDigit = Math.floor(Math.random() * 10);
+  const phoneNumber = `+91 ${firstDigit}${secondDigit}XXXXXX${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`;
+  const winnings = [1764, 2205, 2646, 3087, 3920, 4900, 6172, 7938, 9800];
+  
+  // Winning amounts in multiples of 2 and 8
+  const winningAmount = winnings[Math.floor(Math.random() * winnings.length)];
+  const formattedAmount = winningAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return `User <span class="user">${phoneNumber} won <span class="winning-amount">₹${formattedAmount}</span>`;
 }
 
 function displayNotification(content) {
-    const notifications = document.getElementById('notifications');
-    let notification = document.getElementById('single-notification1');
+  const notifications = document.getElementById('notifications');
+  let notification = document.getElementById('single-notification');
 
-    if (!notification) {
-        notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.id = 'single-notification1';
-        notifications.appendChild(notification);
-    }
+  if (!notification) {
+    notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.id = 'single-notification';
+    notifications.appendChild(notification);
+  }
 
-    notification.innerHTML = `
-        <img id="mny" src="mny (1).gif" alt=""></img>
-        <p>${content}</p>
-    `;
+  notification.innerHTML = `
+    <img id="mny" src="mny (1).gif" alt=""></img>
+    <p>${content}</p>
+  `;
 
-    // Show the notification box
-    notifications.style.display = 'block';
+  // Show the notification box
+  notifications.style.display = 'block';
 }
 
-function updateNotifications1() {
-    // Generate and display a new notification every 2 seconds
-    setInterval(() => {
-        displayNotification(generateWinningNotification());
-    }, 2000);
+function updateNotifications() {
+  // Generate and display a new notification every 2 seconds
+  setInterval(() => {
+    displayNotification(generateWinningNotification());
+  }, 2000);
 }
 
-document.addEventListener('DOMContentLoaded', updateNotifications1);
+document.addEventListener('DOMContentLoaded', updateNotifications);
 
 const ads = [
   { id: 'promo11' },
@@ -289,7 +290,7 @@ const ads = [
 ];
 
 let currentAdIndex = 0;
-let timer = 20;
+let timer = 14;
 const adContainer = document.getElementById('ad-container1');
 const adTimer = document.getElementById('ad-timer1');
 const skipButton = document.getElementById('skip-button1');
