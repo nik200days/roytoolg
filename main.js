@@ -260,7 +260,7 @@ function displayNotification(content) {
     if (!notification) {
         notification = document.createElement('div');
         notification.className = 'notification';
-        notification.id = 'single-notification';
+        notification.id = 'single-notification1';
         notifications.appendChild(notification);
     }
 
