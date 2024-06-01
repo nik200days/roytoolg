@@ -46,13 +46,7 @@ function showErrorNotification(message) {
 
 function login() {
   const accessKey = document.getElementById('access-key').value.trim();
-  const uid = document.getElementById('uid').value.trim();
   const deviceUUID = localStorage.getItem('deviceUUID') || uuid.v4();
-
-  if (!/^\d+$/.test(uid)) {
-    showErrorNotification('UID must be a number.');
-    return;
-  }
 
   db.collection('access_keys').doc(accessKey).get().then(doc => {
     if (doc.exists) {
@@ -82,10 +76,8 @@ function login() {
       creditsDisplay.innerText = `Credits: ${data.credits}`;
       planDetailsDisplay.innerText = `Exp on ${new Date(data.expiry).toLocaleDateString()}`;
       localStorage.setItem('accessKey', accessKey);
-      localStorage.setItem('uid', uid);
       loginForm.style.display = 'none';
       generateForm.style.display = 'block';
-      showSuccessNotification('Connected successfully');
     } else {
       showErrorNotification('Invalid access key.');
     }
@@ -98,7 +90,6 @@ function logout() {
   loginForm.style.display = 'block';
   generateForm.style.display = 'none';
   localStorage.removeItem('accessKey');
-  localStorage.removeItem('uid');
   currentKeyDoc = null;
 }
 
@@ -219,7 +210,6 @@ function formatPeriod(date) {
   return `${dateString}0${minutesOfDay}`;
 }
 
-
 // Countdown timer
 const countdownElement = document.getElementById('countdown');
 
@@ -243,57 +233,128 @@ function updateCountdown() {
 updateCountdown();
 const countdownInterval = setInterval(updateCountdown, 1000);
 
-
 function generateWinningNotification() {
     const startingDigits = ['7', '8', '9'];
     const firstDigit = startingDigits[Math.floor(Math.random() * startingDigits.length)];
     const secondDigit = Math.floor(Math.random() * 10);
     const phoneNumber = `+91 ${firstDigit}${secondDigit}XXXXXX${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`;
-    const winnings = [1764, 2205, 2646, 3087, 3920, 4900, 6172, 7938, 9800]; // Winning amounts in multiples of 2 and 8
+    const winnings = [1764, 2205, 2646, 3087, 3920, 4900, 6172, 7938, 9800];
+    
+    // Winning amounts in multiples of 2 and 8
     const winningAmount = winnings[Math.floor(Math.random() * winnings.length)];
-  const formattedAmount = winningAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return `User <span class="user">${phoneNumber} won <span class="winning-amount">₹${formattedAmount}</span>`;
+    const formattedAmount = winningAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return `User <span class="user">${phoneNumber} won <span class="winning-amount">₹${formattedAmount}</span>`;
 }
 
-  function displayNotification(content) {
+function displayNotification(content) {
     const notifications = document.getElementById('notifications');
     let notification = document.getElementById('single-notification');
 
     if (!notification) {
-      notification = document.createElement('div');
-      notification.className = 'notification';
-      notification.id = 'single-notification';
-      notifications.appendChild(notification);
+        notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.id = 'single-notification';
+        notifications.appendChild(notification);
     }
 
     notification.innerHTML = `
-    <img id="mny" src="mny (1).gif" alt=""></img>
-    <p>${content}</p>
-  `;
+        <img id="mny" src="mny (1).gif" alt=""></img>
+        <p>${content}</p>
+    `;
 
     // Show the notification box
     notifications.style.display = 'block';
-  }
+}
 
-  function updateNotifications() {
+function updateNotifications() {
     // Generate and display a new notification every 2 seconds
     setInterval(() => {
-      displayNotification(generateWinningNotification());
+        displayNotification(generateWinningNotification());
     }, 2000);
-  }
+}
 
-  document.addEventListener('DOMContentLoaded', updateNotifications);
-  
-      // advertisement
-  
-  let currentAdIndex = 0;
-        const ads = document.querySelectorAll('.promo-ad');
-        const adInterval = 4700;
+document.addEventListener('DOMContentLoaded', updateNotifications);
 
-        function showNextAd() {
-            ads[currentAdIndex].classList.remove('active');
-            currentAdIndex = (currentAdIndex + 1) % ads.length;
-            ads[currentAdIndex].classList.add('active');
-        }
+const ads = [
+  { id: 'promo11' },
+  { id: 'promo21' },
+  { id: 'promo31' },
+  { id: 'promo41' }
+];
 
-        setInterval(showNextAd, adInterval);
+let currentAdIndex = 0;
+let timer = 5;
+const adContainer = document.getElementById('ad-container1');
+const adTimer = document.getElementById('ad-timer1');
+const skipButton = document.getElementById('skip-button1');
+let adInterval, countdown;
+
+function showAd() {
+  // Hide all ads
+  ads.forEach(ad => {
+    document.getElementById(ad.id).style.display = 'none';
+  });
+
+  // Show the current ad
+  const currentAd = ads[currentAdIndex];
+  document.getElementById(currentAd.id).style.display = 'flex';
+
+  adContainer.style.display = 'flex';
+  timer = 5;
+  adTimer.textContent = timer;
+  skipButton.style.display = 'none';
+
+  countdown = setInterval(() => {
+    timer--;
+    adTimer.textContent = timer;
+    if (timer === 0) {
+      clearInterval(countdown);
+      skipButton.style.display = 'block';
+    }
+  }, 1000);
+
+  skipButton.onclick = () => {
+    clearInterval(countdown);
+    adContainer.style.display = 'none';
+    startAdCycle(); // Start the ad cycle timer when an ad is skipped
+  };
+}
+
+function cycleAds() {
+  currentAdIndex = (currentAdIndex + 1) % ads.length;
+  showAd();
+}
+
+function startAdCycle() {
+  clearInterval(adInterval); // Clear any existing interval
+  adInterval = setInterval(() => {
+    adContainer.style.display = 'none';
+    cycleAds();
+  }, 11000); // 11 seconds interval
+}
+
+// Add a delay before showing the first ad
+setTimeout(() => {
+  // Initialize the first ad and start the ad cycle after a delay
+  showAd();
+  startAdCycle();
+}, 5000); // 5 seconds delay
+
+// Additional advertisement cycle logic
+let adCycleIndex = 0;
+const adCycleInterval = 3800;
+const promoAds = document.querySelectorAll('.promo-ad');
+
+function showNextPromoAd() {
+  promoAds[adCycleIndex].classList.remove('active');
+  adCycleIndex = (adCycleIndex + 1) % promoAds.length;
+  promoAds[adCycleIndex].classList.add('active');
+}
+
+setInterval(showNextPromoAd, adCycleInterval);
+
+// Initially hide the ad container and all ads until the delay is over
+adContainer.style.display = 'none';
+ads.forEach(ad => {
+  document.getElementById(ad.id).style.display = 'none';
+});
