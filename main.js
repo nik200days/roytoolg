@@ -289,7 +289,7 @@ const ads = [
 ];
 
 let currentAdIndex = 0;
-let timer = 11;
+let timer = 20;
 const adContainer = document.getElementById('ad-container1');
 const adTimer = document.getElementById('ad-timer1');
 const skipButton = document.getElementById('skip-button1');
@@ -336,7 +336,7 @@ function startAdCycle() {
   adInterval = setInterval(() => {
     adContainer.style.display = 'none';
     cycleAds();
-  }, 11000); // 11 seconds interval
+  }, 14000); // 11 seconds interval
 }
 
 // Add a delay before showing the first ad
@@ -344,7 +344,7 @@ setTimeout(() => {
   // Initialize the first ad and start the ad cycle after a delay
   showAd();
   startAdCycle();
-}, 11000); // 5 seconds delay
+}, 14000); // 5 seconds delay
 
 // Additional advertisement cycle logic
 let adCycleIndex = 0;
