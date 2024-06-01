@@ -9,6 +9,7 @@ const firebaseConfig = {
   appId: "1:827150673565:web:f9f818a4d1dad91b585674",
   measurementId: "G-ZFZ0BH0PE4"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -33,6 +34,7 @@ function showSuccessNotification(message) {
     });
 }
 
+
 // Function to show error notification
 function showErrorNotification(message) {
     Swal.fire({
@@ -46,6 +48,7 @@ function showErrorNotification(message) {
 
 function login() {
   const accessKey = document.getElementById('access-key').value.trim();
+  const uid = document.getElementById('uid').value.trim(); // Added line to retrieve UID
   const deviceUUID = localStorage.getItem('deviceUUID') || uuid.v4();
 
   db.collection('access_keys').doc(accessKey).get().then(doc => {
@@ -66,7 +69,8 @@ function login() {
 
       if (!data.deviceUUID) {
         db.collection('access_keys').doc(accessKey).update({
-          deviceUUID: deviceUUID
+          deviceUUID: deviceUUID,
+          uid: uid // Store UID in Firestore
         }).then(() => {
           localStorage.setItem('deviceUUID', deviceUUID);
         });
@@ -240,6 +244,9 @@ function generateWinningNotification() {
     const phoneNumber = `+91 ${firstDigit}${secondDigit}XXXXXX${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`;
     const winnings = [1764, 2205, 2646, 3087, 3920, 4900, 6172, 7938, 9800];
     
+    
+    
+    
     // Winning amounts in multiples of 2 and 8
     const winningAmount = winnings[Math.floor(Math.random() * winnings.length)];
     const formattedAmount = winningAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -282,7 +289,7 @@ const ads = [
 ];
 
 let currentAdIndex = 0;
-let timer = 5;
+let timer = 11;
 const adContainer = document.getElementById('ad-container1');
 const adTimer = document.getElementById('ad-timer1');
 const skipButton = document.getElementById('skip-button1');
@@ -337,7 +344,7 @@ setTimeout(() => {
   // Initialize the first ad and start the ad cycle after a delay
   showAd();
   startAdCycle();
-}, 5000); // 5 seconds delay
+}, 11000); // 5 seconds delay
 
 // Additional advertisement cycle logic
 let adCycleIndex = 0;
