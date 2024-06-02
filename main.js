@@ -1,13 +1,12 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD5s_ZrdRnPply5mYH4M4zA52lGV-iLbpk",
-  authDomain: "hckapk-8810b.firebaseapp.com",
-  databaseURL: "https://hckapk-8810b-default-rtdb.firebaseio.com",
-  projectId: "hckapk-8810b",
-  storageBucket: "hckapk-8810b.appspot.com",
-  messagingSenderId: "827150673565",
-  appId: "1:827150673565:web:f9f818a4d1dad91b585674",
-  measurementId: "G-ZFZ0BH0PE4"
+  apiKey: "AIzaSyCetxYahB16d2ik5JTrVZpFZYBsrd48YLU",
+  authDomain: "orcaleprm.firebaseapp.com",
+  projectId: "orcaleprm",
+  storageBucket: "orcaleprm.appspot.com",
+  messagingSenderId: "97028714002",
+  appId: "1:97028714002:web:943624b95a6ece1f6f72cb",
+  measurementId: "G-ZYD8H0TYFJ"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
